@@ -15,7 +15,7 @@ class SingleBook extends Component {
   render() {
     const { book } = this.props
     return (
-      <Card style={{ width: "18rem", height: "500px" }} key={book.asin} onClick={this.toggleSelected.bind(this)}>
+      <Card style={{ width: "18rem", height: "500px" }} className={this.state.selected ? "selected-card" : ""} key={book.asin} onClick={this.toggleSelected.bind(this)}>
         <Card.Img variant="top" src={book.img} />
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>

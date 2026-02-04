@@ -25,3 +25,7 @@ main {
   }
 }
 
+
+.selected-card {
+  border: 2px solid red;
+}
