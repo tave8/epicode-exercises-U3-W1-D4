@@ -3,8 +3,9 @@ import "./App.css"
 import MyNav from "./components/MyNav"
 import MyFooter from "./components/MyFooter"
 import Welcome from "./components/Welcome"
-import AllTheBooks from "./components/AllTheBooks"
- 
+import BookList from "./components/BookList" 
+import booksList from "./data/books-scifi.json"
+
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       </header>
       <main>
         <Welcome marginTop="80px" />
-        <AllTheBooks marginTop="20px" />
+        <BookList books={booksList} marginTop="20px" />
       </main>
       <MyFooter />
     </>
