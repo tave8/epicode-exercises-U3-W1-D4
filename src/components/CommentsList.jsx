@@ -1,6 +1,6 @@
 import { Component } from "react"
-import  SingleComment from "./SingleComment"
-
+import SingleComment from "./SingleComment"
+import { Container, Col, Form, Row, Button } from "react-bootstrap"
 
 class CommentsList extends Component {
   state = {
@@ -38,11 +38,17 @@ class CommentsList extends Component {
 
   render() {
     return (
-      <>
-        {this.state.reviews.map((review) => {
-          return <SingleComment key={review._id} review={review} /> 
-        })}
-      </>
+      <Container style={{ overflowY: "auto" }}>
+        <Row className="flex-column" >
+          {this.state.reviews.map((review) => {
+            return (
+              <Col key={review._id}>
+                <SingleComment key={review._id} review={review} />
+              </Col>
+            )
+          })}
+        </Row>
+      </Container>
     )
   }
 }
