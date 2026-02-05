@@ -51,7 +51,7 @@ class AIBookSummary extends Component {
         {this.state.bookSummary}
       </>
     ) 
-  }
+  } 
 
   render() {
     return (
