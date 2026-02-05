@@ -78,7 +78,7 @@ class CommentsList extends Component {
             })}
 
             {/* no reviews */}
-            {this.state.reviews.length == 0 && (
+            {this.state.reviews.length == 0 && this.state.isLoading == false && (
               <Alert variant="info">
                 <p>No reviews found.</p>
               </Alert>
