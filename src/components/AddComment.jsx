@@ -65,8 +65,10 @@ class AddComment extends Component {
     return (
       <>
         <Container>
-          <Row>
-            <Form onSubmit={this.onFormSubmit}>
+          {/* best practice: row -> col */}
+          <Form onSubmit={this.onFormSubmit}>
+            <Row className="flex-column">
+              {/* review rate */}
               <Col>
                 {/* review rate */}
                 <Form.Group>
@@ -81,11 +83,13 @@ class AddComment extends Component {
                 </Form.Group>
               </Col>
 
+              {/* review comment */}
               <Col>
                 {/* review text */}
                 <Form.Group>
                   <Form.Label>Review</Form.Label>
                   <Form.Control
+                    as="textarea"
                     onChange={this.onCommentChange}
                     value={this.state.formValues.comment}
                     placeholder={`How did you find ${this.props.book.title}?`}
@@ -94,10 +98,13 @@ class AddComment extends Component {
                 </Form.Group>
               </Col>
 
-              {/* submit review button */}
-              <Button type="submit">Submit</Button>
-            </Form>
-          </Row>
+              {/* submit button */}
+              <Col className="text-center">
+                {/* submit review button */}
+                <Button type="submit">Submit</Button>
+              </Col>
+            </Row>
+          </Form>
         </Container>
       </>
     )

@@ -51,7 +51,6 @@ class CommentsList extends Component {
   render() {
     return (
       <>
-      
         {/* spinner: loading */}
         {this.state.isLoading && (
           <div className="text-center">
@@ -60,8 +59,16 @@ class CommentsList extends Component {
         )}
 
         {/* comments */}
-        <Container style={{ overflowY: "auto" }}>
-          <Row className="flex-column">
+        <Container style={{}} className="mt-2">
+          {/* title */}
+          <Row>
+            <Col>
+              <p className="fs-3 text-center">User reviews</p>
+            </Col>
+          </Row>
+
+          {/* reviews */}
+          <Row className="flex-column flex-nowrap" style={{ height: "200px", overflowY: "auto" }}>
             {this.state.reviews.map((review) => {
               return (
                 <Col key={review._id}>
