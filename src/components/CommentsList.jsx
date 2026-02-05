@@ -1,6 +1,6 @@
 import { Component } from "react"
 import SingleComment from "./SingleComment"
-import { Container, Col, Form, Row, Button, Spinner } from "react-bootstrap"
+import { Container, Col, Form, Row, Button, Spinner, Alert } from "react-bootstrap"
 
 class CommentsList extends Component {
   state = {
@@ -53,7 +53,7 @@ class CommentsList extends Component {
       <>
         {/* spinner: loading */}
         {this.state.isLoading && (
-          <div className="text-center">
+          <div className="text-center mt-3">
             <Spinner variant="success" animation="border" />
           </div>
         )}
@@ -76,6 +76,13 @@ class CommentsList extends Component {
                 </Col>
               )
             })}
+
+            {/* no reviews */}
+            {this.state.reviews.length == 0 && (
+              <Alert variant="info">
+                <p>No reviews found.</p>
+              </Alert>
+            )}
           </Row>
         </Container>
       </>

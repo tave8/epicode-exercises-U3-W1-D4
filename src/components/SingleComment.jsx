@@ -35,11 +35,12 @@ class SingleComment extends Component {
   render() {
     return (
       <>
-        <Row>
+        <Row className="border-bottom py-2">
           {/* review  */}
           <Col>
             {this.props.review.rate} | {this.props.review.comment}{" "}
           </Col>
+
           {/* actions */}
           <Col className="text-end">
             <Button variant="danger" className="fs-6" onClick={this.handlerDeleteComment} size="sm">

@@ -14,6 +14,11 @@ class AddComment extends Component {
   onFormSubmit = (event) => {
     event.preventDefault()
 
+    if (this.state.formValues.comment.trim() == "") {
+      alert("Review cannot be empty")
+      return 
+    }
+
     // the asin of the current book
     const bookAsin = this.props.book.asin
 
@@ -67,7 +72,7 @@ class AddComment extends Component {
         <Container>
           {/* best practice: row -> col */}
           <Form onSubmit={this.onFormSubmit}>
-            <Row className="flex-column">
+            <Row className="flex-column g-3">
               {/* review rate */}
               <Col>
                 {/* review rate */}
