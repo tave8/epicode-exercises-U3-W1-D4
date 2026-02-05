@@ -1,4 +1,6 @@
 import { Component } from "react"
+import  SingleComment from "./SingleComment"
+
 
 class CommentsList extends Component {
   state = {
@@ -38,7 +40,7 @@ class CommentsList extends Component {
     return (
       <>
         {this.state.reviews.map((review) => {
-          return <p key={review._id}>{review.comment}</p>
+          return <SingleComment key={review._id} review={review} /> 
         })}
       </>
     )

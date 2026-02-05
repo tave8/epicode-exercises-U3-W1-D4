@@ -1,5 +1,6 @@
 import { Component } from "react"
 import CommentsList from "./CommentsList"
+import AddComment from "./AddComment"
 
 class CommentArea extends Component {
 
@@ -8,7 +9,7 @@ class CommentArea extends Component {
       this.props.bookIsSelected && (
         <>
           {/* leave your review */}
-          <textarea placeholder={`How did you find ${this.props.book.title}?`}></textarea>
+          <AddComment book={this.props.book} />
 
           {/* reviews for this book */}
           <CommentsList book={this.props.book} />
@@ -16,7 +17,7 @@ class CommentArea extends Component {
       )
     )
   }
-  
+
 }
 
 export default CommentArea
