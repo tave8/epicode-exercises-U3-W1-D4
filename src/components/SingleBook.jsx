@@ -1,5 +1,6 @@
 import { Component } from "react"
 import { Card } from "react-bootstrap"
+import CommentArea from "./CommentArea"
 
 class SingleBook extends Component {
   state = {
@@ -15,14 +16,14 @@ class SingleBook extends Component {
     })
   }
 
-
   render() {
     const { book } = this.props
     return (
-      <Card style={{ width: "18rem", height: "500px" }} className={this.state.selected ? "selected-card" : ""} key={book.asin} onClick={this.toggleSelected}>
-        <Card.Img variant="top" src={book.img} />
+      <Card style={{ width: "18rem", height: this.state.selected ? "900px" : "500px" }} className={this.state.selected ? "selected-card" : ""} key={book.asin}>
+        <Card.Img variant="top" src={book.img} onClick={this.toggleSelected} />
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
+          <CommentArea bookIsSelected={this.state.selected} book={book} />
         </Card.Body>
       </Card>
     )
