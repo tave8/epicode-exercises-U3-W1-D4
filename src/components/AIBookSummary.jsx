@@ -1,5 +1,6 @@
 import { Component } from "react"
 import OpenAI from "../classes/OpenAI"
+import { Container, Col, Form, Row, Button, Spinner } from "react-bootstrap"
 
 class AIBookSummary extends Component {
   state = {
@@ -19,31 +20,41 @@ class AIBookSummary extends Component {
       `Your task is to summarize this book.` +
       `Max 100 characters. Be concise and neutral.` +
       `Title:` +
-       `"""` +
-      `${bookTitle}`+
+      `"""` +
+      `${bookTitle}` +
       `"""`
+    try {
+      this.setState({ isLoading: true })
 
-    const openai = new OpenAI({ simplify: true })
-    const data = await openai.ask(prompt)
-    const aiSummary = data.message
+      const openai = new OpenAI({ simplify: true })
+      const data = await openai.ask(prompt)
+      const aiSummary = data.message
 
-    this.setState({
-        bookSummary: aiSummary
-    })
+      this.setState({
+        bookSummary: aiSummary,
+      })
 
-    // askOpenAI("how are you?")
-    //   .then((openaiAnswer) => {
-    //     console.log(openaiAnswer)
-    //   })
-    //   .catch((err) => {
-    //     console.error(err)
-    //   })
+      this.setState({ isLoading: false })
+    } catch (err) {
+      console.error(err)
+      this.setState({ isLoading: false })
+    }
   }
 
   render() {
     return (
       <>
-        <p>{this.state.bookSummary}</p>
+        <div>
+          {/* book summary */}
+          <p>{this.state.bookSummary}</p>
+
+          {/* spinner */}
+          {this.state.isLoading && (
+            <div className="text-center mt-3">
+              <Spinner variant="success" animation="border" />
+            </div>
+          )}
+        </div>
       </>
     )
   }
