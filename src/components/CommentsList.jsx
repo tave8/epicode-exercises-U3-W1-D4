@@ -1,10 +1,11 @@
 import { Component } from "react"
 import SingleComment from "./SingleComment"
-import { Container, Col, Form, Row, Button } from "react-bootstrap"
+import { Container, Col, Form, Row, Button, Spinner } from "react-bootstrap"
 
 class CommentsList extends Component {
   state = {
     reviews: [],
+    isLoading: true,
   }
 
   componentDidMount() {
@@ -12,6 +13,10 @@ class CommentsList extends Component {
   }
 
   getReviews = (bookAsin) => {
+    this.setState({
+      isLoading: true,
+    })
+
     const url = `https://striveschool-api.herokuapp.com/api/comments/${bookAsin}`
     const config = {
       headers: {
@@ -32,23 +37,41 @@ class CommentsList extends Component {
         const reviews = data
         this.setState({
           reviews,
+          isLoading: false,
+        })
+      })
+      .catch((err) => {
+        console.error(err)
+        this.setState({
+          isLoading: false,
         })
       })
   }
 
   render() {
     return (
-      <Container style={{ overflowY: "auto" }}>
-        <Row className="flex-column" >
-          {this.state.reviews.map((review) => {
-            return (
-              <Col key={review._id}>
-                <SingleComment key={review._id} review={review} />
-              </Col>
-            )
-          })}
-        </Row>
-      </Container>
+      <>
+      
+        {/* spinner: loading */}
+        {this.state.isLoading && (
+          <div className="text-center">
+            <Spinner variant="success" animation="border" />
+          </div>
+        )}
+
+        {/* comments */}
+        <Container style={{ overflowY: "auto" }}>
+          <Row className="flex-column">
+            {this.state.reviews.map((review) => {
+              return (
+                <Col key={review._id}>
+                  <SingleComment key={review._id} review={review} />
+                </Col>
+              )
+            })}
+          </Row>
+        </Container>
+      </>
     )
   }
 }
