@@ -1,6 +1,7 @@
 import { Component } from "react"
 import OpenAI from "../classes/OpenAI"
 import { Container, Col, Form, Row, Button, Spinner } from "react-bootstrap"
+import { ArrowRight, Openai, Stars } from 'react-bootstrap-icons'
 
 class AIBookSummary extends Component {
   state = {
@@ -41,12 +42,23 @@ class AIBookSummary extends Component {
     }
   }
 
+  getBookSummaryComponent() {
+    return (
+      <>
+        {/* AI symbol */}
+        {!this.state.isLoading && <Stars/>}{" "}
+        {/* book summary */}
+        {this.state.bookSummary}
+      </>
+    ) 
+  }
+
   render() {
     return (
       <>
         <div>
           {/* book summary */}
-          <p>{this.state.bookSummary}</p>
+          <p>{this.getBookSummaryComponent()}</p>
 
           {/* spinner */}
           {this.state.isLoading && (
