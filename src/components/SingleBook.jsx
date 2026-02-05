@@ -1,6 +1,8 @@
 import { Component } from "react"
 import { Card } from "react-bootstrap"
 import CommentArea from "./CommentArea"
+import AIBookSummary from "./AIBookSummary"
+
 
 class SingleBook extends Component {
   state = {
@@ -23,6 +25,9 @@ class SingleBook extends Component {
         <Card.Img variant="top" src={book.img} onClick={this.toggleSelected} />
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
+          {/* AI summary */}
+          {this.state.selected && <AIBookSummary book={book} />}
+          {/* comment area: rate, review, reviews list etc. */}
           <CommentArea bookIsSelected={this.state.selected} book={book} />
         </Card.Body>
       </Card>
